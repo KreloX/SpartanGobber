@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponry:item/base/longbow_pulling",
+  "textures": {
+    "layer0": "spartangobber:item/nether_longbow_pulling_0"
+  }
+}

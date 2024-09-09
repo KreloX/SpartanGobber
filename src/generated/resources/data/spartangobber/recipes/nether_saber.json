@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "saber"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:saber",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gobber_nether"
+    },
+    "|": {
+      "item": "gobber2:gobber2_rod_nether"
+    }
+  },
+  "pattern": [
+    " #",
+    " #",
+    "#|"
+  ],
+  "result": {
+    "item": "spartangobber:nether_saber"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "heavy_crossbow"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:heavy_crossbow",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gobber_end"
+    },
+    "D": {
+      "item": "gobber2:gobber2_bow_end"
+    },
+    "H": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "|": {
+      "item": "gobber2:gobber2_rod_end"
+    }
+  },
+  "pattern": [
+    "#D#",
+    "PHP",
+    " | "
+  ],
+  "result": {
+    "item": "spartangobber:end_heavy_crossbow"
+  }
+}

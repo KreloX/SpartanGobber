@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "javelin"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:javelin",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gobber_end"
+    },
+    "/": {
+      "item": "spartangobber:end_gobber_pole"
+    }
+  },
+  "pattern": [
+    "/#"
+  ],
+  "result": {
+    "item": "spartangobber:end_javelin"
+  }
+}

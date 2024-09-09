@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "lance"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:lance",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gobber_end"
+    },
+    "/": {
+      "item": "spartangobber:end_gobber_pole"
+    },
+    "|": {
+      "item": "gobber2:gobber2_rod_end"
+    }
+  },
+  "pattern": [
+    "  #",
+    "#/ ",
+    "|# "
+  ],
+  "result": {
+    "item": "spartangobber:end_lance"
+  }
+}

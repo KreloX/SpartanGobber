@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "saber"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:saber",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gobber_end"
+    },
+    "|": {
+      "item": "gobber2:gobber2_rod_end"
+    }
+  },
+  "pattern": [
+    " #",
+    " #",
+    "#|"
+  ],
+  "result": {
+    "item": "spartangobber:end_saber"
+  }
+}

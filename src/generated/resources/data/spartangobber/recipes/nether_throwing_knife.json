@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "throwing_knife"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:throwing_knife",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gobber_nether"
+    },
+    "|": {
+      "item": "gobber2:gobber2_rod_nether"
+    }
+  },
+  "pattern": [
+    "|#"
+  ],
+  "result": {
+    "item": "spartangobber:nether_throwing_knife"
+  }
+}

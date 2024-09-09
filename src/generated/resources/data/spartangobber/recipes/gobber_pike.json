@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "pike"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:pike",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gobber"
+    },
+    "/": {
+      "item": "spartangobber:gobber_pole"
+    }
+  },
+  "pattern": [
+    "#",
+    "/",
+    "/"
+  ],
+  "result": {
+    "item": "spartangobber:gobber_pike"
+  }
+}

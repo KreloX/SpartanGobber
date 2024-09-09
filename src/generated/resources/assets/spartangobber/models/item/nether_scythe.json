@@ -1,0 +1,22 @@
+{
+  "parent": "spartanweaponry:item/base/scythe",
+  "loader": "spartanweaponry:oil_coated_item",
+  "overrides": [
+    {
+      "model": "spartangobber:item/nether_scythe_blocking",
+      "predicate": {
+        "spartanweaponry:blocking": 1.0
+      }
+    },
+    {
+      "model": "spartangobber:item/nether_scythe_throwing",
+      "predicate": {
+        "spartanweaponry:throwing": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "coating": "spartanweaponry:item/coating/scythe",
+    "layer0": "spartangobber:item/nether_scythe"
+  }
+}
