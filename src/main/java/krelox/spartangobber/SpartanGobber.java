@@ -2,17 +2,24 @@ package krelox.spartangobber;
 
 import com.kwpugh.gobber2.init.ItemInit;
 import com.kwpugh.gobber2.lists.tiers.ToolMaterialTiers;
+import com.oblivioussp.spartanweaponry.ModSpartanWeaponry;
+import com.oblivioussp.spartanweaponry.api.data.model.ModelGenerator;
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import krelox.spartantoolkit.SpartanAddon;
 import krelox.spartantoolkit.SpartanMaterial;
 import krelox.spartantoolkit.WeaponMap;
 import krelox.spartantoolkit.WeaponType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +27,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 @Mod(SpartanGobber.MOD_ID)
@@ -65,6 +75,36 @@ public class SpartanGobber extends SpartanAddon {
         ITEMS.register(bus);
         TRAITS.register(bus);
         TABS.register(bus);
+    }
+
+    @Override
+    protected void addTranslations(LanguageProvider provider, Function<RegistryObject<?>, String> formatName) {
+        super.addTranslations(provider, formatName);
+        provider.add(GOBBER_POLE.get(), formatName.apply(GOBBER_POLE));
+        provider.add(NETHER_GOBBER_POLE.get(), formatName.apply(NETHER_GOBBER_POLE));
+        provider.add(END_GOBBER_POLE.get(), formatName.apply(END_GOBBER_POLE));
+    }
+
+    @Override
+    protected void registerModels(ItemModelProvider provider, ModelGenerator generator) {
+        super.registerModels(provider, generator);
+        generator.createSimpleModel(GOBBER_POLE.get(), new ResourceLocation(ModSpartanWeaponry.ID, "item/base/pole"));
+        generator.createSimpleModel(NETHER_GOBBER_POLE.get(), new ResourceLocation(ModSpartanWeaponry.ID, "item/base/pole"));
+        generator.createSimpleModel(END_GOBBER_POLE.get(), new ResourceLocation(ModSpartanWeaponry.ID, "item/base/pole"));
+    }
+
+    @Override
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+        super.buildCraftingRecipes(consumer);
+        BiConsumer<Item, RegistryObject<Item>> poleRecipe = (result, ingredient) -> ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, result).define('#', ingredient.get())
+                .pattern(" #")
+                .pattern("# ")
+                .unlockedBy("has_rod", has(ingredient.get()))
+                .save(consumer);
+        poleRecipe.accept(GOBBER_POLE.get(), ItemInit.GOBBER2_ROD);
+        poleRecipe.accept(NETHER_GOBBER_POLE.get(), ItemInit.GOBBER2_ROD_NETHER);
+        poleRecipe.accept(END_GOBBER_POLE.get(), ItemInit.GOBBER2_ROD_END);
     }
 
     @Override

@@ -1,4 +1,4 @@
-// 1.20.1	2024-09-09T19:24:35.7437306	Item Models: spartangobber
+// 1.20.1	2024-09-18T11:22:00.9213756	Item Models: spartangobber
 c07ea41df16faf6a965f28d95d18add3daab49d6 assets/spartangobber/models/item/end_battleaxe.json
 bb6b824fbcc9edd3365dc93ba9bd6c3c0eaded89 assets/spartangobber/models/item/end_battleaxe_blocking.json
 6029fc58a2b3dba929ceec175446d1728fd18d32 assets/spartangobber/models/item/end_battleaxe_throwing.json
@@ -16,6 +16,7 @@ b70ab5e5965c43aa6dfdf248db5d623c4d0e3fcb assets/spartangobber/models/item/end_fl
 5a0819ee61524985f71cc70992e90e0c7169e4de assets/spartangobber/models/item/end_glaive.json
 dceb655d19c32f9475783548643ba052c1a0cf3f assets/spartangobber/models/item/end_glaive_blocking.json
 0991748f101655d45c1b346fb71b71dcb71bb5d5 assets/spartangobber/models/item/end_glaive_throwing.json
+009858f12ce641b75e52565c7fb33fe5ee5bd297 assets/spartangobber/models/item/end_gobber_pole.json
 bbedd92c6bff3cc248c0522ced48aa0c8caddf74 assets/spartangobber/models/item/end_greatsword.json
 746b5ab37c9396dc46ee89eac4ea222a8c03c3fa assets/spartangobber/models/item/end_greatsword_blocking.json
 e20ceb239ecc682f94df12e8ec9cf9823d2a7c96 assets/spartangobber/models/item/end_greatsword_throwing.json
@@ -121,6 +122,7 @@ ba250d292b3d760e5e4c4d198834eec326250b2a assets/spartangobber/models/item/gobber
 a536994cc842f3c78c060880d0795f8bd43dc206 assets/spartangobber/models/item/gobber_pike.json
 2deacf9330de11a6edb0744d2bb7fd7cdd0b6256 assets/spartangobber/models/item/gobber_pike_blocking.json
 94a6fd3cc343beaf4855023c4e1122aa6b73b95f assets/spartangobber/models/item/gobber_pike_throwing.json
+7bf251309794e877656c4526ed5aa00ea8b73dca assets/spartangobber/models/item/gobber_pole.json
 20be54b2e3740044161f1c18a6e1e12500e3948f assets/spartangobber/models/item/gobber_quarterstaff.json
 50ecbc438d9f070f3b25ce5d3a62a10434f838bf assets/spartangobber/models/item/gobber_quarterstaff_blocking.json
 d8912531dc1ec44637ac50920f152708b60a4fb3 assets/spartangobber/models/item/gobber_quarterstaff_throwing.json
@@ -160,6 +162,7 @@ d79c00f42323f4b31ec19e8e6345ee15cd3c10e2 assets/spartangobber/models/item/nether
 ace839bb414fa4fad428f3c3d5f1bf2e87562264 assets/spartangobber/models/item/nether_glaive.json
 7794a0b6fce19c2f44f7bc664b3355774ee9c38e assets/spartangobber/models/item/nether_glaive_blocking.json
 52d9acd7da328b046e98409dd3bd67737a148f83 assets/spartangobber/models/item/nether_glaive_throwing.json
+03bda8cc1f5ec8771c50043565b535f95db8322d assets/spartangobber/models/item/nether_gobber_pole.json
 13bd4e052c329bf67b9102fc51d512cdd84258df assets/spartangobber/models/item/nether_greatsword.json
 a56b2af127f05e30e20224a261a7d6a92e1b20e0 assets/spartangobber/models/item/nether_greatsword_blocking.json
 5ca322f545626c35e3c76e0f39794c5754dcac2f assets/spartangobber/models/item/nether_greatsword_throwing.json

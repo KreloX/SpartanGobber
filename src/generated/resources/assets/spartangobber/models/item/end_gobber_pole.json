@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponry:item/base/pole",
+  "textures": {
+    "layer0": "spartangobber:item/end_gobber_pole"
+  }
+}
