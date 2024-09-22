@@ -49,11 +49,11 @@ public class SpartanGobber extends SpartanAddon {
     public static final List<SpartanMaterial> MATERIALS = new ArrayList<>();
 
     public static final SpartanMaterial OVERWORLD_GOBBER = material("gobber", () -> ToolMaterialTiers.OVERWORLD_GOBBER, "ingots/gobber")
-            .setHandle(ItemInit.GOBBER2_ROD).setPole(GOBBER_POLE).setBow(ItemInit.GOBBER2_BOW).setAttackSpeedModifier(0.4F);
+            .setAttackDamageModifier(-2).setAttackSpeedModifier(0.4F).setBow(ItemInit.GOBBER2_BOW).setHandle(ItemInit.GOBBER2_ROD).setPole(GOBBER_POLE);
     public static final SpartanMaterial NETHER_GOBBER = material("nether", () -> ToolMaterialTiers.NETHER_GOBBER, "ingots/gobber_nether")
-            .setHandle(ItemInit.GOBBER2_ROD_NETHER).setPole(NETHER_GOBBER_POLE).setBow(ItemInit.GOBBER2_BOW_NETHER).setAttackSpeedModifier(0.6F);
+            .setAttackSpeedModifier(0.6F).setBow(ItemInit.GOBBER2_BOW_NETHER).setHandle(ItemInit.GOBBER2_ROD_NETHER).setPole(NETHER_GOBBER_POLE);
     public static final SpartanMaterial END_GOBBER = material("end", () -> ToolMaterialTiers.END_GOBBER, "ingots/gobber_end")
-            .setHandle(ItemInit.GOBBER2_ROD_END).setPole(END_GOBBER_POLE).setBow(ItemInit.GOBBER2_BOW_END).setAttackSpeedModifier(0.8F);
+            .setAttackDamageModifier(3).setAttackSpeedModifier(0.8F).setBow(ItemInit.GOBBER2_BOW_END).setHandle(ItemInit.GOBBER2_ROD_END).setPole(END_GOBBER_POLE);
 
     @SafeVarargs
     private static SpartanMaterial material(String name, Supplier<Tier> tier, String repairTag, RegistryObject<WeaponTrait>... traits) {
