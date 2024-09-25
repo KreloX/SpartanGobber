@@ -3,20 +3,24 @@ package krelox.spartangobber;
 import com.kwpugh.gobber2.init.ItemInit;
 import com.kwpugh.gobber2.lists.tiers.ToolMaterialTiers;
 import com.oblivioussp.spartanweaponry.ModSpartanWeaponry;
+import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
+import com.oblivioussp.spartanweaponry.api.WeaponTraits;
 import com.oblivioussp.spartanweaponry.api.data.model.ModelGenerator;
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
-import krelox.spartantoolkit.SpartanAddon;
-import krelox.spartantoolkit.SpartanMaterial;
-import krelox.spartantoolkit.WeaponMap;
-import krelox.spartantoolkit.WeaponType;
+import krelox.spartantoolkit.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -45,12 +49,31 @@ public class SpartanGobber extends SpartanAddon {
     public static final RegistryObject<Item> NETHER_GOBBER_POLE = ITEMS.register("nether_gobber_pole", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> END_GOBBER_POLE = ITEMS.register("end_gobber_pole", () -> new Item(new Item.Properties()));
 
+    // Traits
+    public static final RegistryObject<WeaponTrait> WITHER_SKELETON_DECAPITATE = registerTrait(TRAITS,
+            new BetterWeaponTrait("wither_skeleton_decapitate", MOD_ID, WeaponTrait.TraitQuality.POSITIVE) {
+                @Override
+                public String getDescription() {
+                    return "Instantly kills Wither Skeletons, dropping their skull";
+                }
+
+                @Override
+                public float modifyDamageDealt(WeaponMaterial material, float baseDamage, DamageSource source, LivingEntity attacker, LivingEntity victim) {
+                    if (victim instanceof WitherSkeleton) {
+                        victim.remove(Entity.RemovalReason.KILLED);
+                        victim.spawnAtLocation(Items.WITHER_SKELETON_SKULL, 1);
+                    }
+                    return super.modifyDamageDealt(material, baseDamage, source, attacker, victim);
+                }
+            }.setMelee().setThrowing());
+
     // Materials
     public static final List<SpartanMaterial> MATERIALS = new ArrayList<>();
 
     public static final SpartanMaterial OVERWORLD_GOBBER = material("gobber", () -> ToolMaterialTiers.OVERWORLD_GOBBER, "ingots/gobber")
             .setHandle(ItemInit.GOBBER2_ROD).setPole(GOBBER_POLE).setBow(ItemInit.GOBBER2_BOW).setAttackSpeedModifier(0.4F);
-    public static final SpartanMaterial NETHER_GOBBER = material("nether", () -> ToolMaterialTiers.NETHER_GOBBER, "ingots/gobber_nether")
+    public static final SpartanMaterial NETHER_GOBBER = material("nether", () -> ToolMaterialTiers.NETHER_GOBBER, "ingots/gobber_nether",
+            WeaponTraits.FIREPROOF, WITHER_SKELETON_DECAPITATE)
             .setHandle(ItemInit.GOBBER2_ROD_NETHER).setPole(NETHER_GOBBER_POLE).setBow(ItemInit.GOBBER2_BOW_NETHER).setAttackSpeedModifier(0.6F);
     public static final SpartanMaterial END_GOBBER = material("end", () -> ToolMaterialTiers.END_GOBBER, "ingots/gobber_end")
             .setHandle(ItemInit.GOBBER2_ROD_END).setPole(END_GOBBER_POLE).setBow(ItemInit.GOBBER2_BOW_END).setAttackSpeedModifier(0.8F);
@@ -64,8 +87,8 @@ public class SpartanGobber extends SpartanAddon {
     }
 
     @SuppressWarnings("unused")
-    public static final RegistryObject<CreativeModeTab> SPARTAN_SKIES_TAB = registerTab(TABS, MOD_ID,
-            () -> WEAPONS.get(OVERWORLD_GOBBER, WeaponType.GREATSWORD).get(),
+    public static final RegistryObject<CreativeModeTab> SPARTAN_GOBBER_TAB = registerTab(TABS, MOD_ID,
+            () -> WEAPONS.get(NETHER_GOBBER, WeaponType.GREATSWORD).get(),
             (parameters, output) -> ITEMS.getEntries().forEach(item -> output.accept(item.get())));
 
     public SpartanGobber() {
