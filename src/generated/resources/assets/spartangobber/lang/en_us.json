@@ -74,5 +74,7 @@
   "item.spartangobber.nether_throwing_knife": "Nether Throwing Knife",
   "item.spartangobber.nether_tomahawk": "Nether Tomahawk",
   "item.spartangobber.nether_warhammer": "Nether Warhammer",
-  "itemGroup.spartangobber": "Spartan Weaponry: Gobber"
+  "itemGroup.spartangobber": "Spartan Weaponry: Gobber",
+  "tooltip.spartangobber.trait.wither_skeleton_decapitate": "Wither Skeleton Decapitate",
+  "tooltip.spartangobber.trait.wither_skeleton_decapitate.desc": "Instantly kills Wither Skeletons, dropping their skull"
 }
