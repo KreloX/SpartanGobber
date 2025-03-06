@@ -27,12 +27,12 @@ val modDescription: String by project
 val packFormatNumber: String by project
 val spartanWeaponryVersion: String by project
 val spartanToolkitVersion: String by project
-val spartanToolkitLimit: String by project
+val spartanToolkitVersionRange: String by project
 val gobberVersion: String by project
 val gobberFile: String by project
 val emiVersion: String by project
 
-version = "$minecraftVersion-$modVersion"
+version = modVersion
 group = modGroupId
 base.archivesName = modId
 
@@ -143,7 +143,7 @@ tasks.named<ProcessResources>("processResources").configure {
         "modIssueTracker" to modIssueTracker, "modHomepage" to modHomepage, "modCredits" to modCredits,
         "modAuthors" to modAuthors, "modDescription" to modDescription, "packFormatNumber" to packFormatNumber,
         "spartanWeaponryVersion" to spartanWeaponryVersion,
-        "spartanToolkitVersion" to spartanToolkitVersion, "spartanToolkitLimit" to spartanToolkitLimit,
+        "spartanToolkitVersion" to spartanToolkitVersion, "spartanToolkitVersionRange" to spartanToolkitVersionRange,
         "gobberVersion" to gobberVersion
     )
     inputs.properties(replaceProperties)

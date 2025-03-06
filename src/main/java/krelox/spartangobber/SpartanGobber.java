@@ -1,10 +1,11 @@
 package krelox.spartangobber;
 
+import com.kwpugh.gobber2.config.GobberConfigBuilder;
 import com.kwpugh.gobber2.init.ItemInit;
 import com.kwpugh.gobber2.lists.tiers.ToolMaterialTiers;
-import com.oblivioussp.spartanweaponry.ModSpartanWeaponry;
 import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
 import com.oblivioussp.spartanweaponry.api.WeaponTraits;
+import com.oblivioussp.spartanweaponry.api.data.model.BaseModels;
 import com.oblivioussp.spartanweaponry.api.data.model.ModelGenerator;
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import krelox.spartantoolkit.*;
@@ -18,10 +19,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.WitherSkeleton;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.common.Mod;
@@ -67,28 +65,50 @@ public class SpartanGobber extends SpartanAddon {
                 }
             }.setMelee().setThrowing());
 
+    public static final RegistryObject<WeaponTrait> UNBREAKABLE = registerTrait(TRAITS,
+            new BetterWeaponTrait("unbreakable", MOD_ID, WeaponTrait.TraitQuality.POSITIVE) {
+                @Override
+                public String getDescription() {
+                    return null;
+                }
+
+                @Override
+                public void onCreateItem(WeaponMaterial material, ItemStack stack) {
+                    if (GobberConfigBuilder.END_GOBBER_TOOLS_UNBREAKABLE.get()) {
+                        stack.getOrCreateTag().putBoolean("Unbreakable", true);
+                    }
+                }
+
+                @Override
+                public boolean isEnabled(WeaponMaterial material, ItemStack stack) {
+                    return GobberConfigBuilder.END_GOBBER_TOOLS_UNBREAKABLE.get() && super.isEnabled(material, stack);
+                }
+            }.setUniversal());
+
     // Materials
     public static final List<SpartanMaterial> MATERIALS = new ArrayList<>();
 
+    @SuppressWarnings("unused")
     public static final SpartanMaterial OVERWORLD_GOBBER = material("gobber", () -> ToolMaterialTiers.OVERWORLD_GOBBER, "ingots/gobber")
             .setAttackDamageModifier(-2).setAttackSpeedModifier(0.4F).setBow(ItemInit.GOBBER2_BOW).setHandle(ItemInit.GOBBER2_ROD).setPole(GOBBER_POLE);
     public static final SpartanMaterial NETHER_GOBBER = material("nether", () -> ToolMaterialTiers.NETHER_GOBBER, "ingots/gobber_nether",
             WeaponTraits.FIREPROOF, WITHER_SKELETON_DECAPITATE)
             .setAttackSpeedModifier(0.6F).setBow(ItemInit.GOBBER2_BOW_NETHER).setHandle(ItemInit.GOBBER2_ROD_NETHER).setPole(NETHER_GOBBER_POLE);
-    public static final SpartanMaterial END_GOBBER = material("end", () -> ToolMaterialTiers.END_GOBBER, "ingots/gobber_end")
+    @SuppressWarnings("unused")
+    public static final SpartanMaterial END_GOBBER = material("end", () -> ToolMaterialTiers.END_GOBBER, "ingots/gobber_end", UNBREAKABLE)
             .setAttackDamageModifier(3).setAttackSpeedModifier(0.8F).setBow(ItemInit.GOBBER2_BOW_END).setHandle(ItemInit.GOBBER2_ROD_END).setPole(END_GOBBER_POLE);
 
     @SafeVarargs
-    private static SpartanMaterial material(String name, Supplier<Tier> tier, String repairTag, RegistryObject<WeaponTrait>... traits) {
-        TagKey<Item> repairTag1 = TagKey.create(Registries.ITEM, new ResourceLocation("forge", repairTag));
-        SpartanMaterial material = new SpartanMaterial(name, MOD_ID, tier.get(), repairTag1, traits);
+    private static SpartanMaterial material(String name, Supplier<Tier> tier, String repairTagString, RegistryObject<WeaponTrait>... traits) {
+        var repairTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", repairTagString));
+        var material = new SpartanMaterial(name, MOD_ID, tier.get(), repairTag, traits);
         MATERIALS.add(material);
         return material;
     }
 
     @SuppressWarnings("unused")
-    public static final RegistryObject<CreativeModeTab> SPARTAN_GOBBER_TAB = registerTab(TABS, MOD_ID,
-            () -> WEAPONS.get(NETHER_GOBBER, WeaponType.GREATSWORD).get(),
+    public static final RegistryObject<CreativeModeTab> SPARTAN_SKIES_TAB = registerTab(TABS, MOD_ID,
+            () -> WEAPONS.get(NETHER_GOBBER, WeaponType.HALBERD).get(),
             (parameters, output) -> ITEMS.getEntries().forEach(item -> output.accept(item.get())));
 
     public SpartanGobber() {
@@ -111,9 +131,9 @@ public class SpartanGobber extends SpartanAddon {
     @Override
     protected void registerModels(ItemModelProvider provider, ModelGenerator generator) {
         super.registerModels(provider, generator);
-        generator.createSimpleModel(GOBBER_POLE.get(), new ResourceLocation(ModSpartanWeaponry.ID, "item/base/pole"));
-        generator.createSimpleModel(NETHER_GOBBER_POLE.get(), new ResourceLocation(ModSpartanWeaponry.ID, "item/base/pole"));
-        generator.createSimpleModel(END_GOBBER_POLE.get(), new ResourceLocation(ModSpartanWeaponry.ID, "item/base/pole"));
+        generator.createSimpleModel(GOBBER_POLE.get(), BaseModels.POLE);
+        generator.createSimpleModel(NETHER_GOBBER_POLE.get(), BaseModels.POLE);
+        generator.createSimpleModel(END_GOBBER_POLE.get(), BaseModels.POLE);
     }
 
     @Override
